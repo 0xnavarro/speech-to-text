@@ -190,6 +190,21 @@ const Footer = styled.footer`
   font-size: 0.9rem;
 `;
 
+const LoadingDots = styled.div`
+  color: #666;
+  &::after {
+    content: '.';
+    animation: dots 2s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0%, 25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+  }
+`;
+
 // Main Component
 export const SpeechToText = () => {
   // State management
@@ -200,6 +215,7 @@ export const SpeechToText = () => {
   const [recognizer, setRecognizer] = useState<speechsdk.SpeechRecognizer | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
+  const [isInitializing, setIsInitializing] = useState(false);
 
   // Recording time counter
   useEffect(() => {
@@ -292,6 +308,7 @@ export const SpeechToText = () => {
     if (!recognizer) return;
 
     if (!isRecording) {
+      setIsInitializing(true);
       setTranscription('');
       setCurrentLanguage(null);
       setStreamingText('');
@@ -302,6 +319,7 @@ export const SpeechToText = () => {
       setIsRecording(false);
       setCurrentLanguage(null);
       setStreamingText('');
+      setIsInitializing(false);
     }
   };
 
@@ -325,6 +343,12 @@ export const SpeechToText = () => {
     };
     return languages[code] || code;
   };
+
+  useEffect(() => {
+    if (streamingText || transcription) {
+      setIsInitializing(false);
+    }
+  }, [streamingText, transcription]);
 
   return (
     <Container>
@@ -356,7 +380,13 @@ export const SpeechToText = () => {
       <TranscriptionArea>
         {transcription}
         {streamingText && <span style={{ color: '#666' }}>{streamingText}</span>}
-        {!transcription && !streamingText && 'Transcription will appear here...'}
+        {!transcription && !streamingText && (
+          isInitializing ? (
+            <LoadingDots>Initializing recording</LoadingDots>
+          ) : (
+            'Transcription will appear here...'
+          )
+        )}
       </TranscriptionArea>
       <SocialLinksContainer>
         <SocialButton 
