@@ -2,7 +2,6 @@
 
 # 🎙️ Speech to Text - Atenea Labs
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://speech-to-text.atenealabs.com)
 [![GitHub license](https://img.shields.io/github/license/0xnavarro/speech-to-text)](https://github.com/0xnavarro/speech-to-text/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/0xnavarro/speech-to-text)](https://github.com/0xnavarro/speech-to-text/stargazers)
 
@@ -10,9 +9,12 @@
 
 ### 🌟 Transcripción de Voz a Texto en Tiempo Real | Multilenguaje | Intuitivo
 
-[Ver Demo](https://speech-to-text.atenealabs.com) · [Reportar Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Solicitar Feature](https://github.com/0xnavarro/speech-to-text/issues)
+[Reportar Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Solicitar Feature](https://github.com/0xnavarro/speech-to-text/issues)
 
 ---
+
+![Speech to Text Showcase](public/showcase-AteneaLabs.png)
+
 </div>
 
 Una herramienta web para transcripción de voz a texto en tiempo real, desarrollada por mi para [Atenea Labs](https://www.atenealabs.com).
@@ -88,7 +90,6 @@ Este repositorio es de libre uso. Siéntete libre de utilizarlo, modificarlo y d
 
 # 🎙️ Speech to Text - Atenea Labs [English]
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://speech-to-text.atenealabs.com)
 [![GitHub license](https://img.shields.io/github/license/0xnavarro/speech-to-text)](https://github.com/0xnavarro/speech-to-text/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/0xnavarro/speech-to-text)](https://github.com/0xnavarro/speech-to-text/stargazers)
 
@@ -96,9 +97,12 @@ Este repositorio es de libre uso. Siéntete libre de utilizarlo, modificarlo y d
 
 ### 🌟 Real-time Speech to Text | Multi-language | User-friendly
 
-[Live Demo](https://speech-to-text.atenealabs.com) · [Report Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Request Feature](https://github.com/0xnavarro/speech-to-text/issues)
+[Report Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Request Feature](https://github.com/0xnavarro/speech-to-text/issues)
 
 ---
+
+![Speech to Text Showcase](public/showcase-AteneaLabs.png)
+
 </div>
 
 A real-time speech-to-text web tool, developed by me for [Atenea Labs](https://www.atenealabs.com).
