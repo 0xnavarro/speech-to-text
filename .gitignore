@@ -23,8 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
-# Azure configuration
-src/config/azure-config.ts
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-# Keep example file
-!src/config/azure-config.example.ts
+# Keep example files
+!.env.example

@@ -54,15 +54,13 @@ npm install
    - Crea un nuevo recurso de Speech Services
    - Obtén la clave, endpoint y la región de tu recurso
 
-4. Configura las credenciales:
-   - Copia el archivo `src/config/azure-config.example.ts` a `src/config/azure-config.ts`
+4. Configura las variables de entorno:
+   - Copia el archivo `.env.example` a `.env`
    - Actualiza el archivo con tus credenciales de Azure:
-```typescript
-export const AZURE_CONFIG = {
-    speechKey: 'tu-clave-aquí',
-    speechRegion: 'tu-región-aquí',
-    endpoint: 'tu-endpoint-aquí'
-} as const;
+```env
+VITE_AZURE_SPEECH_KEY=tu-clave-aquí
+VITE_AZURE_SPEECH_REGION=tu-región-aquí
+VITE_AZURE_ENDPOINT=tu-endpoint-aquí
 ```
 
 5. Inicia la aplicación:
@@ -142,15 +140,13 @@ npm install
    - Create a new Speech Services resource
    - Get your resource key, endpoint, and region
 
-4. Configure credentials:
-   - Copy `src/config/azure-config.example.ts` to `src/config/azure-config.ts`
+4. Configure environment variables:
+   - Copy `.env.example` to `.env`
    - Update the file with your Azure credentials:
-```typescript
-export const AZURE_CONFIG = {
-    speechKey: 'your-key-here',
-    speechRegion: 'your-region-here',
-    endpoint: 'your-endpoint-here'
-} as const;
+```env
+VITE_AZURE_SPEECH_KEY=your-key-here
+VITE_AZURE_SPEECH_REGION=your-region-here
+VITE_AZURE_ENDPOINT=your-endpoint-here
 ```
 
 5. Start the application:
