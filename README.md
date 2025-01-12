@@ -9,7 +9,7 @@
 
 ### 🌟 Transcripción de Voz a Texto en Tiempo Real | Multilenguaje | Intuitivo
 
-[Reportar Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Solicitar Feature](https://github.com/0xnavarro/speech-to-text/issues)
+[Reportar Bug](https://github.com/0xnavarro/speech-to-text/issues) · [Solicitar Feature](https://github.com/0xnavarro/speech-to-text/issues) · [English Documentation](#-speech-to-text---atenea-labs-english)
 
 ---
 
@@ -27,6 +27,7 @@ Este proyecto nació de una necesidad personal: mi teclado se había estropeado 
 
 - Transcripción de voz a texto en tiempo real
 - Detección automática de múltiples idiomas
+- Optimización opcional del texto con Azure OpenAI
 - Interfaz limpia y fácil de usar
 - Copiar al portapapeles con un clic
 - Visualización del tiempo de grabación
@@ -36,6 +37,7 @@ Este proyecto nació de una necesidad personal: mi teclado se había estropeado 
 - React + TypeScript
 - Vite
 - Azure Cognitive Services (Speech to Text)
+- Azure OpenAI (GPT-4 para optimización de texto)
 - Emotion (CSS-in-JS)
 
 ## 🛠️ Configuración
@@ -51,18 +53,23 @@ cd speech-to-text
 npm install
 ```
 
-3. Crea una cuenta en Azure y configura el servicio de Speech:
-   - Ve a [Azure Portal](https://portal.azure.com)
-   - Crea un nuevo recurso de Speech Services
-   - Obtén la clave, endpoint y la región de tu recurso
+3. Configura los servicios de Azure:
+   - Configura Azure Speech Services
+   - (Opcional) Configura Azure OpenAI Services
 
 4. Configura las variables de entorno:
    - Copia el archivo `.env.example` a `.env`
-   - Actualiza el archivo con tus credenciales de Azure:
+   - Actualiza el archivo con tus credenciales:
 ```env
+# Azure Speech Services
 VITE_AZURE_SPEECH_KEY=tu-clave-aquí
 VITE_AZURE_SPEECH_REGION=tu-región-aquí
 VITE_AZURE_ENDPOINT=tu-endpoint-aquí
+
+# Azure OpenAI (Opcional)
+VITE_AZURE_OPENAI_KEY=tu-clave-openai-aquí
+VITE_AZURE_OPENAI_ENDPOINT=tu-endpoint-openai-aquí
+VITE_AZURE_OPENAI_DEPLOYMENT=tu-deployment-openai-aquí
 ```
 
 5. Inicia la aplicación:
@@ -115,6 +122,7 @@ This project was born from a personal need: my keyboard broke down and I was usi
 
 - Real-time speech-to-text transcription
 - Automatic multi-language detection
+- Optional text optimization with Azure OpenAI
 - Clean and user-friendly interface
 - One-click copy to clipboard
 - Recording time display
@@ -124,6 +132,7 @@ This project was born from a personal need: my keyboard broke down and I was usi
 - React + TypeScript
 - Vite
 - Azure Cognitive Services (Speech to Text)
+- Azure OpenAI (GPT-4 for text optimization)
 - Emotion (CSS-in-JS)
 
 ## 🛠️ Setup
@@ -139,18 +148,23 @@ cd speech-to-text
 npm install
 ```
 
-3. Create an Azure account and set up the Speech service:
-   - Go to [Azure Portal](https://portal.azure.com)
-   - Create a new Speech Services resource
-   - Get your resource key, endpoint, and region
+3. Set up Azure services:
+   - Set up Azure Speech Services
+   - (Optional) Set up Azure OpenAI Services
 
 4. Configure environment variables:
    - Copy `.env.example` to `.env`
-   - Update the file with your Azure credentials:
+   - Update the file with your credentials:
 ```env
+# Azure Speech Services
 VITE_AZURE_SPEECH_KEY=your-key-here
 VITE_AZURE_SPEECH_REGION=your-region-here
 VITE_AZURE_ENDPOINT=your-endpoint-here
+
+# Azure OpenAI (Optional)
+VITE_AZURE_OPENAI_KEY=your-openai-key-here
+VITE_AZURE_OPENAI_ENDPOINT=your-openai-endpoint-here
+VITE_AZURE_OPENAI_DEPLOYMENT=your-openai-deployment-here
 ```
 
 5. Start the application:

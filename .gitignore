@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
@@ -25,8 +26,26 @@ dist-ssr
 
 # Environment variables
 .env
-.env.local
-.env.*.local
-
-# Keep example files
+.env.*
 !.env.example
+
+# Build files
+/build
+/dist
+
+# Cache
+.cache
+.temp
+.tmp
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Project specific
+.cursorrules

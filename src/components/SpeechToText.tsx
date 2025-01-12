@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import styled from '@emotion/styled';
 import * as speechsdk from 'microsoft-cognitiveservices-speech-sdk';
 import { AZURE_CONFIG } from '../config/azure-config';
+import { correctTranscribedText } from '../services/textCorrection';
 import IconoAtenea from '/Icono.svg';
 /* cSpell:enable */
 
@@ -51,6 +52,7 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 1rem;
   margin: 1rem 0;
+  flex-wrap: wrap;
 `;
 
 const Button = styled.button<{ $isRecording?: boolean }>`
@@ -216,6 +218,8 @@ export const SpeechToText = () => {
   const [isCopied, setIsCopied] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const [isInitializing, setIsInitializing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [correctedText, setCorrectedText] = useState('');
 
   // Recording time counter
   useEffect(() => {
@@ -310,6 +314,7 @@ export const SpeechToText = () => {
     if (!isRecording) {
       setIsInitializing(true);
       setTranscription('');
+      setCorrectedText('');
       setCurrentLanguage(null);
       setStreamingText('');
       await recognizer.startContinuousRecognitionAsync();
@@ -323,8 +328,22 @@ export const SpeechToText = () => {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(transcription).then(() => {
+  const optimizeTranscription = async () => {
+    if (!transcription.trim()) return;
+    
+    setIsProcessing(true);
+    try {
+      const corrected = await correctTranscribedText(transcription);
+      setCorrectedText(corrected);
+    } catch (error) {
+      console.error('Error al procesar el texto:', error);
+      setCorrectedText(transcription);
+    }
+    setIsProcessing(false);
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
@@ -364,8 +383,16 @@ export const SpeechToText = () => {
           <StatusIndicator $isRecording={isRecording} />
           {isRecording ? `Stop Recording (${formatTime(recordingTime)})` : 'Start Recording'}
         </Button>
+        {!isRecording && transcription && (
+          <Button
+            onClick={optimizeTranscription}
+            disabled={isProcessing}
+          >
+            {isProcessing ? 'Optimizing...' : 'Optimize transcription'}
+          </Button>
+        )}
         <CopyButton 
-          onClick={copyToClipboard}
+          onClick={() => copyToClipboard(correctedText || transcription)}
           className={isCopied ? 'copied' : ''}
           disabled={isCopied}
         >
@@ -378,14 +405,14 @@ export const SpeechToText = () => {
         </DetectedLanguageTag>
       )}
       <TranscriptionArea>
-        {transcription}
-        {streamingText && <span style={{ color: '#666' }}>{streamingText}</span>}
-        {!transcription && !streamingText && (
-          isInitializing ? (
-            <LoadingDots>Initializing recording</LoadingDots>
-          ) : (
-            'Transcription will appear here...'
-          )
+        {isInitializing && <LoadingDots>Listening...</LoadingDots>}
+        {!isInitializing && (
+          <>
+            {isProcessing && <LoadingDots>Optimizing transcription</LoadingDots>}
+            {correctedText || transcription}
+            {streamingText && <span style={{ color: '#666' }}>{streamingText}</span>}
+            {!transcription && !streamingText && 'Transcription will appear here...'}
+          </>
         )}
       </TranscriptionArea>
       <SocialLinksContainer>
