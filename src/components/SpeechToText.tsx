@@ -223,7 +223,7 @@ export const SpeechToText = () => {
 
   // Recording time counter
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval> | undefined;
     if (isRecording) {
       interval = setInterval(() => {
         setRecordingTime(prev => prev + 1);
